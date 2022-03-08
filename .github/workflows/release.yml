@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./package
     steps:
     - uses: actions/checkout@v1
     - name: Get Version Number
@@ -24,7 +27,7 @@ jobs:
       uses: bpicode/github-action-fpm@master
       with:
         fpm_args: './build'
-        fpm_opts: '--debug -n mypackage -t deb -s dir'
+        fpm_opts: '--debug --architecture x86_64/amd64 --version ${NETMAKER_VERSION} build/netclient=/sbin/netclient'
     - name: Upload x86 to Release
       uses: svenstaro/upload-release-action@v2
       with:
