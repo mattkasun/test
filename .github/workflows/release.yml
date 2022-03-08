@@ -27,7 +27,7 @@ jobs:
       uses: bpicode/github-action-fpm@master
       with:
         fpm_args: './build'
-        fpm_opts: '--debug --architecture x86_64/amd64 --version ${NETMAKER_VERSION} build/netclient=/sbin/netclient'
+        fpm_opts: '--debug -s dir -t deb --architecture amd64 --version ${NETMAKER_VERSION} build/netclient=/sbin/netclient'
     - name: Upload x86 to Release
       uses: svenstaro/upload-release-action@v2
       with:
