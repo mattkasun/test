@@ -15,22 +15,22 @@ jobs:
     - name: Get Version Number
       run: |
         if [[ -n "${{ github.event.inputs.version }}" ]]; then
-          NETMAKER_VERSION=${{ github.event.inputs.version }}
+          VERSION=${{ github.event.inputs.version }}
         else
-          NETMAKER_VERSION=$(curl -fsSL https://api.github.com/repos/gravitl/netmaker/tags | grep 'name' | head -1 | cut -d'"' -f4)
+          VERSION=$(curl -fsSL https://api.github.com/repos/gravitl/netmaker/tags | grep 'name' | head -1 | cut -d'"' -f4)
         fi
-        echo "NETMAKER_VERSION=${NETMAKER_VERSION}" >> $GITHUB_ENV
+        echo "VERSION=${VERSION}" >> $GITHUB_ENV
     - name: Package
       uses: gravitl/github-action-fpm@master
       with:
         fpm_args: './build'
-        fpm_opts: '--debug -s dir -t deb --architecture amd64 --version ${NETMAKER_VERSION} build/netclient=/sbin/netclient'
+        fpm_opts: '--debug -s dir -t deb --architecture amd64 --version ${VERSION} build/netclient=/sbin/netclient'
     - name: Upload x86 to Release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: netclient-0.11.1-amd64.deb
-        tag: ${{ env.NETMAKER_VERSION }}
+        file: netclient_${VERSION}_amd64.deb
+        tag: ${{ env.VERSION }}
         overwrite: true
         prerelease: true
-        asset_name: mypackage_1.0_amd64.deb
+        asset_name: netclient_${VERSION}_amd64.deb
