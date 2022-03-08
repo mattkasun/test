@@ -29,8 +29,8 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: netclient_${VERSION}_amd64.deb
+        file: netclient_${{ env.VERSION }}_amd64.deb
         tag: ${{ env.VERSION }}
         overwrite: true
         prerelease: true
-        asset_name: netclient_${VERSION}_amd64.deb
+        asset_name: netclient_${{ env.VERSION }}_amd64.deb
