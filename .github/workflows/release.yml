@@ -24,7 +24,7 @@ jobs:
         fi
         echo "NETMAKER_VERSION=${NETMAKER_VERSION}" >> $GITHUB_ENV
     - name: Package
-      uses: bpicode/github-action-fpm@master
+      uses: gravitl/github-action-fpm@master
       with:
         fpm_args: './build'
         fpm_opts: '--debug -s dir -t deb --architecture amd64 --version ${NETMAKER_VERSION} build/netclient=/sbin/netclient'
