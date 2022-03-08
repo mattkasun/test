@@ -10,5 +10,5 @@
 --url "https//:github.com/gravitl/netmaker" 
 --maintainer "info@gravitl.com" 
 --vendor Gravitl
-netclient=/sbin/netclient netclient.service=/lib/systemd/system/netclient.service
+build/netclient=/sbin/netclient build/netclient.service=/lib/systemd/system/netclient.service
 
