@@ -17,4 +17,12 @@ jobs:
       with:
         fpm_args: './build'
         fpm_opts: '--debug -n mypackage -t deb -s dir'
-
+    - name: Upload x86 to Release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mypackage_1.0_amd64.deb
+        tag: ${{ env.NETMAKER_VERSION }}
+        overwrite: true
+        prerelease: true
+        asset_name: mypackage_1.0_amd64.deb
