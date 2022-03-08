@@ -1,0 +1,20 @@
+name: Example workflow yml
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Netmaker version'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Package
+      uses: bpicode/github-action-fpm@master
+      with:
+        fpm_args: './build'
+        fpm_opts: '--debug -n mypackage -t deb -s dir'
+

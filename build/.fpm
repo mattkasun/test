@@ -1,0 +1,15 @@
+-s dir 
+-t deb 
+-p netclient-0.11.1-amd64.deb 
+--name netclient 
+--license sspl 
+--architecture x86_64/amd64 
+--version 0.11.1 
+--depends wireguard-tools 
+--description "Netmaker's netclient agent and CLI" 
+--url "https//:github.com/gravitl/netmaker" 
+--maintainer "info@gravitl.com" 
+--vendor Gravitl
+--deb-systemd-enable
+netclient=/sbin/netclient netclient.service=/lib/systemd/system/netclient.service
+
