@@ -24,7 +24,7 @@ jobs:
     - name: Package
       uses: gravitl/github-action-fpm@master
       with:
-        fpm_args: './package'
+        fpm_args: 'build/netclient=/sbin/netclient build/netclient.service=/lib/systemd/system/netclient.service'
         fpm_opts: '--debug -s dir -t deb --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
     - name: Upload x86 to Release
       uses: svenstaro/upload-release-action@v2
