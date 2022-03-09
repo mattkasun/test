@@ -21,6 +21,10 @@ jobs:
         fi
         echo "VERSION=${VERSION}" >> $GITHUB_ENV
         echo "${VERSION:1}=${PACKAGE_VERSION}" >> $GITHUB_ENV
+    - name: Echo
+      run: |
+        echo ${{ env.VERSION }}
+        echo ${{ env.PACKAGE_VERSION }}
     - name: Package
       uses: gravitl/github-action-fpm@master
       with:
