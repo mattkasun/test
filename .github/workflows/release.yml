@@ -41,11 +41,11 @@ jobs:
       - name: vars
         run: |
           if [[ -n "${{ needs.build.outputs.tag }}" ]]; then
-            VERSION=${{needs.build.outputs.tag}}
+            TAG=${{needs.build.outputs.tag}}
           else
             echo "failure: tag not set"
           fi
-          echo "VERSION=${{VERSION}}" >> $GITHUB_ENV
+          echo "VERSION=${{TAG}}" >> $GITHUB_ENV
           if [[ -n "${{ nees.build.output.version }}" ]]; then
             PACKAGE_VERSION=${{needs.build.outputs.version}}
           else
