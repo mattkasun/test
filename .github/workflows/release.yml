@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.echo.outputs.tag }}
-      version: ${{ steps.echo.output.version }}
+      version: ${{ steps.echo.outputs.version }}
     steps:
     - uses: actions/checkout@v1
     - name: Get Version Number
