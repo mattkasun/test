@@ -49,23 +49,23 @@ jobs:
         #if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug.enabled}}
       - name: checkout
         uses: actions/checkout@v2
-      - name: Set variables
-        run: |
-          echo ${{ needs.build.outputs.tag }} ${{ needs.build.outputs.version }}
-          if [[ -n "${{ needs.build.outputs.tag }}" ]]; then
-            ONE=${{needs.build.outputs.tag}}
-          else
-            echo "failure: tag not set"
-          fi
-          echo "VERSION=${{ONE}}" >> $GITHUB_ENV
-          if [[ -n "${{ nees.build.output.version }}" ]]; then
-            PACKAGE_VERSION=${{needs.build.outputs.version}}
-          else
-            echo "failure: version not set"
-          fi
-          echo "PACKAGE_VERSION=${{PACKAGE_VERSION}}" >> $GITHUB_ENV
-          echo ${{ env.VERSION }}
-          echo ${{ env.PACKAGE_VERSION }}
+      #- name: Set variables
+       # run: |
+        #  echo ${{ needs.build.outputs.tag }} ${{ needs.build.outputs.version }}
+         # if [[ -n "${{ needs.build.outputs.tag }}" ]]; then
+          #  ONE=${{needs.build.outputs.tag}}
+          #else
+          #  echo "failure: tag not set"
+          #fi
+         # echo "VERSION=${{ONE}}" >> $GITHUB_ENV
+         # if [[ -n "${{ nees.build.output.version }}" ]]; then
+         #   PACKAGE_VERSION=${{needs.build.outputs.version}}
+         # else
+         #   echo "failure: version not set"
+         # fi
+         # echo "PACKAGE_VERSION=${{PACKAGE_VERSION}}" >> $GITHUB_ENV
+         # echo ${{ env.VERSION }}
+         # echo ${{ env.PACKAGE_VERSION }}
       - name: Package deb
         uses: gravitl/github-action-fpm@master
         with:
