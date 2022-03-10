@@ -20,7 +20,9 @@ jobs:
           VERSION=$(curl -fsSL https://api.github.com/repos/gravitl/netmaker/tags | grep 'name' | head -1 | cut -d'"' -f4)
         fi
         echo "VERSION=${VERSION}" >> $GITHUB_ENV
-        echo "PACKAGE_VERSION=${VERSION:1}" >> $GITHUB_ENV
+        #remove everything but digits and . from version for packaging purposes
+        PACKAGE_VERSION=$(echo ${VERSION} + tr -cd '[:digit:].'
+        echo "PACKAGE_VERSION=${PACKAGE_VERSION} >> $GITHUB_ENV
     - name: Echo
       run: |
         echo ${{ env.VERSION }}
