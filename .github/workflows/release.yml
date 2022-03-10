@@ -39,10 +39,10 @@ jobs:
     steps:
     - name: vars
       run: |
-        VERSION=${{ needs.build.outputs.tag }}
-        echo "VERSION=${{ VERSION}}" >> $GITHUB_ENV
-        PACKAGE_VERSION=${{ needs.build.outputs.version }}
-        echo "PACKAGE_VERSION=${{ PACKAGE_VERSION }}" >> $GITHUB_ENV
+        VERSION=${{needs.build.outputs.tag}}
+        echo "VERSION=${{VERSION}}" >> $GITHUB_ENV
+        PACKAGE_VERSION=${{needs.build.outputs.version}}
+        echo "PACKAGE_VERSION=${{PACKAGE_VERSION}}" >> $GITHUB_ENV
         echo ${{ env.VERSION }}
         echo ${{ env.PACKAGE_VERSION }}
     - name: Package deb
