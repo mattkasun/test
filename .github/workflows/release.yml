@@ -31,7 +31,7 @@ jobs:
       uses: gravitl/github-action-fpm@master
       with:
         fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
-        fpm_opts: '--debug -s dir -t deb --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
+        fpm_opts: '-s dir -t deb --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
     - name: Upload deb to Release
       uses: svenstaro/upload-release-action@v2
       with:
@@ -45,7 +45,7 @@ jobs:
       uses: gravitl/github-action-fpm@master
       with:
         fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
-        fpm_opts: '--debug -s dir -t rpm --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
+        fpm_opts: '-s dir -t rpm --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
     - name: Upload rpm to Release
       uses: svenstaro/upload-release-action@v2
       with:
@@ -59,14 +59,14 @@ jobs:
       uses: gravitl/github-action-fpm@master
       with:
         fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
-        fpm_opts: '--debug -s dir -t pacman --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
+        fpm_opts: '-s dir -t pacman --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
     - name: Upload rpm to Release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: netclient_${{ env.PACKAGE_VERSION }}-1_x86_64.pkg.tar.zst
+        file: netclient-${{ env.PACKAGE_VERSION }}-1_x86_64.pkg.tar.zst
         tag: ${{ env.VERSION }}
         overwrite: true
         prerelease: true
-        asset_name: netclient_${{ env.PACKAGE_VERSION }}-1_x86_64.pkg.tar.zst
+        asset_name: netclient-${{ env.PACKAGE_VERSION }}-1_x86_64.pkg.tar.zst
 
