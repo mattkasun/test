@@ -52,7 +52,7 @@ jobs:
             exit 1
           fi
           echo "VERSION=${ONE}" >> $GITHUB_ENV
-          if [[ -n "${{ nees.build.output.version }}" ]]; then
+          if [[ -n "${{ needs.build.output.version }}" ]]; then
             PACKAGE_VERSION=${{needs.build.outputs.version}}
           else
             echo "failure: version not set"
