@@ -21,7 +21,7 @@ jobs:
       tag: ${{ steps.echo.outputs.tag }}
       version: ${{ steps.echo.outputs.version }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Get Version Number
         run: |
           if [[ -n "${{ github.event.inputs.version }}" ]]; then
@@ -46,9 +46,9 @@ jobs:
     steps:
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug.enabled}}
+        #if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug.enabled}}
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Set variables
         run: |
           echo ${{ needs.build.outputs.tag }} ${{ needs.build.outputs.version }}
