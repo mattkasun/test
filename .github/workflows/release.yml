@@ -6,6 +6,9 @@ on:
       version:
         description: 'Netmaker version'
         required: true
+defaults:
+    run:
+      shell: bash
 
 jobs:
   build:
