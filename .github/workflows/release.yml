@@ -6,6 +6,10 @@ on:
       version:
         description: 'Netmaker version'
         required: true
+      debug_enabled:
+        description: 'Run with tmate debugging enabled'
+        required: false
+        default: false
 defaults:
     run:
       shell: bash
@@ -40,8 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v1
-      - name: vars
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug.enabled}}
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: Set variables
         run: |
           echo ${{ needs.build.outputs.tag }} ${{ needs.build.outputs.version }}
           if [[ -n "${{ needs.build.outputs.tag }}" ]]; then
