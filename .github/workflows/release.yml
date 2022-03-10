@@ -14,85 +14,85 @@ jobs:
       tag: ${{ steps.echo.outputs.tag }}
       version: ${{ steps.echo.outputs.version }}
     steps:
-    - uses: actions/checkout@v1
-    - name: Get Version Number
-      run: |
-        if [[ -n "${{ github.event.inputs.version }}" ]]; then
-          VERSION=${{ github.event.inputs.version }}
-        else
-          VERSION=$(curl -fsSL https://api.github.com/repos/gravitl/netmaker/tags | grep 'name' | head -1 | cut -d'"' -f4)
-        fi
-        echo "VERSION=${VERSION}" >> $GITHUB_ENV
-        #remove everything but digits and . from version for packaging purposes
-        PACKAGE_VERSION=$(echo ${VERSION} | tr -cd '[:digit:].')
-        echo "PACKAGE_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
-    - name: Echo
-      id: echo
-      run: |
-        echo ${{ env.VERSION }}
-        echo "::set-output name=tag::${{ env.VERSION }}"
-        echo ${{ env.PACKAGE_VERSION }}
-        echo "::set-output name=version::${{ env.PACKAGE_VERSION }}"
+      - uses: actions/checkout@v1
+      - name: Get Version Number
+        run: |
+          if [[ -n "${{ github.event.inputs.version }}" ]]; then
+            VERSION=${{ github.event.inputs.version }}
+          else
+            VERSION=$(curl -fsSL https://api.github.com/repos/gravitl/netmaker/tags | grep 'name' | head -1 | cut -d'"' -f4)
+          fi
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          #remove everything but digits and . from version for packaging purposes
+          PACKAGE_VERSION=$(echo ${VERSION} | tr -cd '[:digit:].')
+          echo "PACKAGE_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
+      - name: Echo
+        id: echo
+        run: |
+          echo ${{ env.VERSION }}
+          echo "::set-output name=tag::${{ env.VERSION }}"
+          echo ${{ env.PACKAGE_VERSION }}
+          echo "::set-output name=version::${{ env.PACKAGE_VERSION }}"
   packages:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: vars
-      run: |
-        if [[ -n "${{ needs.build.outputs.tag }}" ]]; then
-          VERSION=${{needs.build.outputs.tag}}
-        else
-          echo "failure: tag not set"
-        fi
-        echo "VERSION=${{VERSION}}" >> $GITHUB_ENV
-        if [[ -n "${{ nees.build.output.version }}" ]]; then
-          PACKAGE_VERSION=${{needs.build.outputs.version}}
-        else
-          echo "failure: version not set"
-        fi
-        echo "PACKAGE_VERSION=${{PACKAGE_VERSION}}" >> $GITHUB_ENV
-        echo ${{ env.VERSION }}
-        echo ${{ env.PACKAGE_VERSION }}
-    - name: Package deb
-      uses: gravitl/github-action-fpm@master
-      with:
-        fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
-        fpm_opts: '-s dir -t deb --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
-    - name: Upload deb to Release
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: netclient_${{ env.PACKAGE_VERSION }}_amd64.deb
-        tag: ${{ env.VERSION }}
-        overwrite: true
-        prerelease: true
-        asset_name: netclient_${{ env.PACKAGE_VERSION }}_amd64.deb
-    - name: Package rpm
-      uses: gravitl/github-action-fpm@master
-      with:
-        fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
-        fpm_opts: '-s dir -t rpm --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
-    - name: Upload rpm to Release
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: netclient-${{ env.PACKAGE_VERSION }}-1.x86_64.rpm
-        tag: ${{ env.VERSION }}
-        overwrite: true
-        prerelease: true
-        asset_name: netclient-${{ env.PACKAGE_VERSION }}-1.x86_64.rpm
-    - name: Package pacman
-      uses: gravitl/github-action-fpm@master
-      with:
-        fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
-        fpm_opts: '-s dir -t pacman --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
-    - name: Upload rpm to Release
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: netclient-${{ env.PACKAGE_VERSION }}-1-x86_64.pkg.tar.zst
-        tag: ${{ env.VERSION }}
-        overwrite: true
-        prerelease: true
-        asset_name: netclient-${{ env.PACKAGE_VERSION }}-1-x86_64.pkg.tar.zst
-
+      - uses: actions/checkout@v1
+      - name: vars
+        run: |
+          if [[ -n "${{ needs.build.outputs.tag }}" ]]; then
+            VERSION=${{needs.build.outputs.tag}}
+          else
+            echo "failure: tag not set"
+          fi
+          echo "VERSION=${{VERSION}}" >> $GITHUB_ENV
+          if [[ -n "${{ nees.build.output.version }}" ]]; then
+            PACKAGE_VERSION=${{needs.build.outputs.version}}
+          else
+            echo "failure: version not set"
+          fi
+          echo "PACKAGE_VERSION=${{PACKAGE_VERSION}}" >> $GITHUB_ENV
+          echo ${{ env.VERSION }}
+          echo ${{ env.PACKAGE_VERSION }}
+      - name: Package deb
+        uses: gravitl/github-action-fpm@master
+        with:
+          fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
+          fpm_opts: '-s dir -t deb --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
+      - name: Upload deb to Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: netclient_${{ env.PACKAGE_VERSION }}_amd64.deb
+          tag: ${{ env.VERSION }}
+          overwrite: true
+          prerelease: true
+          asset_name: netclient_${{ env.PACKAGE_VERSION }}_amd64.deb
+      - name: Package rpm
+        uses: gravitl/github-action-fpm@master
+        with:
+          fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
+          fpm_opts: '-s dir -t rpm --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
+      - name: Upload rpm to Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: netclient-${{ env.PACKAGE_VERSION }}-1.x86_64.rpm
+          tag: ${{ env.VERSION }}
+          overwrite: true
+          prerelease: true
+          asset_name: netclient-${{ env.PACKAGE_VERSION }}-1.x86_64.rpm
+      - name: Package pacman
+        uses: gravitl/github-action-fpm@master
+        with:
+          fpm_args: './build/netclient=/sbin/netclient ./build/netclient.service=/lib/systemd/system/netclient.service'
+          fpm_opts: '-s dir -t pacman --architecture amd64 --version ${{ env.PACKAGE_VERSION }} build/netclient=/sbin/netclient'
+      - name: Upload rpm to Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: netclient-${{ env.PACKAGE_VERSION }}-1-x86_64.pkg.tar.zst
+          tag: ${{ env.VERSION }}
+          overwrite: true
+          prerelease: true
+          asset_name: netclient-${{ env.PACKAGE_VERSION }}-1-x86_64.pkg.tar.zst
