@@ -22,7 +22,7 @@ jobs:
         echo "VERSION=${VERSION}" >> $GITHUB_ENV
         #remove everything but digits and . from version for packaging purposes
         PACKAGE_VERSION=$(echo ${VERSION} | tr -cd '[:digit:].')
-        echo "PACKAGE_VERSION=${PACKAGE_VERSION} >> $GITHUB_ENV
+        echo "PACKAGE_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
     - name: Echo
       run: |
         echo ${{ env.VERSION }}
