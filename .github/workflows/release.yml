@@ -50,10 +50,10 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: netclient_${{ env.PACKAGE_VERSION }}_amd64.rpm
+        file: netclient_${{ env.PACKAGE_VERSION }}-1.x86_64.rpm
         tag: ${{ env.VERSION }}
         overwrite: true
         prerelease: true
-        asset_name: netclient_${{ env.PACKAGE_VERSION }}_amd64.rpm
+        asset_name: netclient_${{ env.PACKAGE_VERSION }}-1.x86_64.rpm
    
 
