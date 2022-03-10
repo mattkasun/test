@@ -49,16 +49,18 @@ jobs:
             ONE=${{needs.build.outputs.tag}}
           else
             echo "failure: tag not set"
+            exit 1
           fi
-         # echo "VERSION=${{ONE}}" >> $GITHUB_ENV
-         # if [[ -n "${{ nees.build.output.version }}" ]]; then
-         #   PACKAGE_VERSION=${{needs.build.outputs.version}}
-         # else
-         #   echo "failure: version not set"
-         # fi
-         # echo "PACKAGE_VERSION=${{PACKAGE_VERSION}}" >> $GITHUB_ENV
-         # echo ${{ env.VERSION }}
-         # echo ${{ env.PACKAGE_VERSION }}
+          echo "VERSION=${{ONE}}" >> $GITHUB_ENV
+          if [[ -n "${{ nees.build.output.version }}" ]]; then
+            PACKAGE_VERSION=${{needs.build.outputs.version}}
+          else
+            echo "failure: version not set"
+            exit 1
+          fi
+          echo "PACKAGE_VERSION=${{PACKAGE_VERSION}}" >> $GITHUB_ENV
+          echo ${{ env.VERSION }}
+          echo ${{ env.PACKAGE_VERSION }}
       - name: Package deb
         uses: gravitl/github-action-fpm@master
         with:
