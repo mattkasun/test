@@ -5,10 +5,10 @@ on:
     workflows: [Go]
     types:
       - completed
-jobs: 
+jobs:
   on-success:
   runs-on: ubuntu-latest
-  if: {{ github.event.workflow_run.conclustion == success}}
+  if: ${{ github.event.workflow_run.conclustion == success  }}
   steps:
     - name: discord success message
       uses: appleboy/discord-action@master
@@ -17,9 +17,8 @@ jobs:
         webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
         color: "#42f545"
         username: "GitHub Bot"
-       message: "${{ github.event.workflow_run }} was successful"
+        message: "${{ github.event.workflow_run }} was successful"
 
-  steps:
     - name: discord fail message
       uses: appleboy/discord-action@master
       with:
@@ -27,4 +26,4 @@ jobs:
         webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
         color: "#990000"
         username: "GitHub Bot"
-       message: "${{ github.event.workflow_run }} failed"
+        message: "${{ github.event.workflow_run }} failed"
