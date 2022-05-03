@@ -61,8 +61,8 @@ jobs:
           echo "PACKAGE_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
           echo ${{ env.VERSION }}
           echo ${{ env.PACKAGE_VERSION }}
-      - name: Repo-dispatch
-        uses: peter-evans/respository-dispatch@v2
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2.0.0
         with:
           token: ${{ secrets.PERS_TOKEN_FOR_NETMAKER_DEVOPS}}
           respository: respository
