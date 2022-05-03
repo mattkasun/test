@@ -67,4 +67,4 @@ jobs:
           token: ${{ secrets.PERS_TOKEN_FOR_NETMAKER_DEVOPS}}
           repository: gravitl/netmaker-devops
           event-type: build-packages
-          client-payload: '{"VERSION": "{{ env.PACKAGE_VERSION }}"}' 
+          client-payload: '{"VERSION": "${{ env.PACKAGE_VERSION }}"}'
