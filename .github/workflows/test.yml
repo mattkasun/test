@@ -62,9 +62,9 @@ jobs:
           echo ${{ env.VERSION }}
           echo ${{ env.PACKAGE_VERSION }}
       - name: Repo-dispatch
-        uses: ph-fritche/action-dispatch@v1.0.1
+        uses: peter-evans/respository-dispatch@v2
         with:
           token: ${{ secrets.PERS_TOKEN_FOR_NETMAKER_DEVOPS}}
-          type: respository
-          id: gravitl/netmaker-devops
+          respository: respository
+          event-type: gravitl/netmaker-devops
           payload: '{"VERSION": " {{ env.PACKAGE_VERSION }}"}' 
