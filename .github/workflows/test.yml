@@ -65,6 +65,6 @@ jobs:
         uses: peter-evans/repository-dispatch@v2.0.0
         with:
           token: ${{ secrets.PERS_TOKEN_FOR_NETMAKER_DEVOPS}}
-          repository: respository
-          event-type: gravitl/netmaker-devops
+          repository: gravitl/netmaker-devops
+          event-type: build-packages
           client-payload: '{"VERSION": " {{ env.PACKAGE_VERSION }}"}' 
