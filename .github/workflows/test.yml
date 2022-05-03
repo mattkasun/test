@@ -1,4 +1,4 @@
-name: Example workflow yml
+name: Test workflow
 
 on:
   workflow_dispatch:
@@ -62,7 +62,7 @@ jobs:
           echo ${{ env.VERSION }}
           echo ${{ env.PACKAGE_VERSION }}
       - name: Repo-dispatch
-        uses: ph-fritche/action-dispatch@v1
+        uses: ph-fritche/action-dispatch@v1.0.1
         with:
           token: ${{ secrets.PERS_TOKEN_FOR_NETMAKER_DEVOPS}}
           type: respository
