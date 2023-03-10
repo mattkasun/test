@@ -36,6 +36,7 @@ jobs:
       - name: Echo
         id: echo
         run: |
+          echo "passed version" ${{ github.event.inputs.version }}
           echo ${{ env.VERSION }}
           echo "::set-output name=tag::${{ env.VERSION }}"
           echo ${{ env.PACKAGE_VERSION }}
