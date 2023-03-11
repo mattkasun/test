@@ -11,6 +11,12 @@ on:
       version:
         required: true
         type: string
+      other_data:
+        required: true
+        type: string
+      some_bool:
+        required: true
+        type: boolean
         
 
       
@@ -37,6 +43,8 @@ jobs:
         id: echo
         run: |
           echo "passed version" ${{ github.event.inputs.version }}
+          echo "data" ${{ github.event.inputs.other_data }}
+          echo "bool" ${{ github.event.inputs.some_bool }}
           echo ${{ env.VERSION }}
           echo "::set-output name=tag::${{ env.VERSION }}"
           echo ${{ env.PACKAGE_VERSION }}
