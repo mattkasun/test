@@ -8,13 +8,13 @@ on:
         required: true
   workflow_call:
     inputs:
-      version:
+      newversion:
         required: true
         type: string
-      other_data:
+      data:
         required: true
         type: string
-      some_bool:
+      update:
         required: true
         type: boolean
         
@@ -45,9 +45,9 @@ jobs:
           echo "passed version" ${{ github.event.inputs.version }}
           echo "data" ${{ github.event.inputs.other_data }}
           echo "bool" ${{ github.event.inputs.some_bool }}
-          echo "version" $VERSION
-          echo "data" $OTHER_DATA
-          echo "boo" $SOME_BOOL
+          echo "version" $NEWVERSION ":" ${{ inputs.newversion }}
+          echo "data" $DATA  ":" ${{ inputs.data }}
+          echo "bool" $UPDATE ":" ${{ inputs.update }}
           echo ${{ env.VERSION }}
           echo "::set-output name=tag::${{ env.VERSION }}"
           echo ${{ env.PACKAGE_VERSION }}
