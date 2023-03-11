@@ -45,6 +45,9 @@ jobs:
           echo "passed version" ${{ github.event.inputs.version }}
           echo "data" ${{ github.event.inputs.other_data }}
           echo "bool" ${{ github.event.inputs.some_bool }}
+          echo "version" $VERSION
+          echo "data" $OTHER_DATA
+          echo "boo" $SOME_BOOL
           echo ${{ env.VERSION }}
           echo "::set-output name=tag::${{ env.VERSION }}"
           echo ${{ env.PACKAGE_VERSION }}
