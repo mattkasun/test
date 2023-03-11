@@ -42,6 +42,7 @@ jobs:
       - name: Echo
         id: echo
         run: |
+          echo "prerelease" ${{ github.inputs.event.prerelease }}
           echo "passed version" ${{ github.event.inputs.version }}
           echo "data" ${{ github.event.inputs.other_data }}
           echo "bool" ${{ github.event.inputs.some_bool }}
