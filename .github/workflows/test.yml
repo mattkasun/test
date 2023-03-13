@@ -42,7 +42,7 @@ jobs:
       - name: Echo
         id: echo
         run: |
-          echo "event" ${{ github.event.type }}
+          echo "event" ${{ github.event.name }}
           echo "prerelease" ${{ github.inputs.event.prerelease }} ":" ${{ inputs.prerelease }}
           echo "passed version" ${{ github.event.inputs.version }}
           echo "data" ${{ github.event.inputs.other_data }}
