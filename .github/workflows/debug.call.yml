@@ -25,7 +25,7 @@ jobs:
       - 
         name: echo
         run: |
-         echo ${{ $GITHU_ENV.TAG }}
+         echo ${{ $GITHUB_ENV.TAG }}
   call:
     uses: ./.github/workflows/debug.yml
     with:
