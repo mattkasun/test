@@ -1,0 +1,34 @@
+name: Debugging
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'docker tag'
+        required: true
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+
+jobs:
+  x86:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Set tag
+        run: |
+            if [[ -n "${{ inputs.tag }}" ]]; then
+              TAG=${{ inputs.tag }}
+            elif [[ "${{ github.ref_name }}" == 'master' ]]; then
+              TAG="latest"
+            else
+              TAG="${{ github.ref_name }}"
+            fi
+            echo "TAG=${TAG}" >> $GITHUB_ENV
+      - 
+        name: echo
+        run: |
+         echo ${{ $GITHU_ENV.TAG }}
+
