@@ -2,7 +2,7 @@ name: Discord
 
 on:
   workflow_run:
-    workflows: [Go]
+    workflows: [Go, Debug Call]
     types:
       - completed
 jobs:
@@ -30,4 +30,4 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#990000"
           username: "GitHub Bot"
-          message: "${{ github.event.workflow_run.name }} failed"
+          message: "${{ github.repository}}: ${{ github.event.workflow_run.name }} failed"
