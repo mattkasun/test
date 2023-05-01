@@ -17,7 +17,7 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#42f545"
           username: "GitHub Bot"
-          message: "${{ github.repository }}: ${{ github.event.workflow_run.name }} was successful"
+          message: "${{ github.repository }}: ${{ github.event.workflow_run.name }} ${{ github.event.workflow_run.run_id }} ${{ github.event.workflow_run.run_number }} ${{ github_was successful"
 
   on-failure:
     runs-on: ubuntu-latest
@@ -30,4 +30,5 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#990000"
           username: "GitHub Bot"
-          message: "${{ github.repository}}: ${{ github.event.workflow_run.name }} failed"
+          message: "${{ github.repository }}: ${{ github.event.workflow_run.name }} ${{ github.event.workflow_run.run_id }} ${{ github.event.workflow_run.run_number }} failed"
+    
