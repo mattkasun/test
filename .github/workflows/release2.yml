@@ -8,7 +8,7 @@ on:
         required: true
 jobs:
   call:
-    uses: mattkasun/test2/.github/workflows/junk.yml@master
+    uses: mattkasun/test2/.github/workflows/junk.yml@main
     with:
       version: ${{ inputs.version }}
     secrets: inherit
