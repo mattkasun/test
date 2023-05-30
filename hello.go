@@ -14,4 +14,6 @@ func main() {
 	}
 	fmt.Println("hello world!")
 	fmt.Println(user)
+	fmt.Println("another message")
+	fmt.Println("third message")
 }
