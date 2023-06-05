@@ -41,4 +41,4 @@ jobs:
         color: "#48f442"
         username: "GitHub Bot"
         message: "A new commit has been pushed with custom color."
-        file: ./ping.log/testing-ping.log
+      #  file: ./ping.log/testing-ping.log
