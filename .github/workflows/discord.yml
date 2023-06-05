@@ -13,7 +13,7 @@ jobs:
       - name: get PR
         run: |
           gh api -H 'Accept: application/vnd.github+json' -H 'X-Github-Api-Version: 2022-11-28' \
-            /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} | jq .pullrequest[0].number" >> PR
+            /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} | jq .pullrequest[0].number" >> $PR
           echo "${{ PR }} >> $GITHUB_ENV
       - name: discord success message
         uses: appleboy/discord-action@master
@@ -31,7 +31,7 @@ jobs:
       - name: get PR
         run: |
           gh api -H 'Accept: application/vnd.github+json' -H 'X-Github-Api-Version: 2022-11-28' \
-            /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} | jq .pullrequest[0].number" >> PR
+            /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} | jq .pullrequest[0].number" >> $PR
           echo ${{ PR }} >> $GITHUB_ENV
       - name: discord fail message
         uses: appleboy/discord-action@master
