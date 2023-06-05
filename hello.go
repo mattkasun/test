@@ -17,4 +17,5 @@ func main() {
 	fmt.Println("third message")
 	fmt.Println("fourth message")
 	fmt.Println(user)
+	fmt.Println("junk")
 }
