@@ -15,7 +15,7 @@ jobs:
           echo "pull_request=gh api -H 'Accept: application/vnd.github+json' \
             -H 'X-Github-Api-Version: 2022-11-28' \
             /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} \ 
-            | jq.pullrequest[0].number" >> $GITHUB_ENV
+            | jq .pullrequest[0].number" >> $GITHUB_ENV
       - name: discord success message
         uses: appleboy/discord-action@master
         with:
@@ -34,7 +34,7 @@ jobs:
           echo "pull_request=gh api -H 'Accept: application/vnd.github+json' \
             -H 'X-Github-Api-Version: 2022-11-28' \
             /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} \ 
-            | jq.pullrequest[0].number" >> $GITHUB_ENV
+            | jq .pullrequest[0].number" >> $GITHUB_ENV
       - name: discord fail message
         uses: appleboy/discord-action@master
         with:
