@@ -11,6 +11,8 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success'  }}
     steps:
       - name: get PR
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api -H 'Accept: application/vnd.github+json' -H 'X-Github-Api-Version: 2022-11-28' \
             /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} | jq .pullrequest[0].number >> $GITHUB_ENV.pull_request
@@ -28,6 +30,8 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'failure'  }}
     steps:
       - name: get PR
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh api -H 'Accept: application/vnd.github+json' -H 'X-Github-Api-Version: 2022-11-28' \
             /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} | jq .pullrequest[0].number >> $GITHUB_ENV.pull_request
