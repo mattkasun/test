@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success'  }}
     steps:
+      - name: get PR
+        run: |
+          echo "pull_request=gh api -H `Accept: application/vnd.github+json' \
+            -H 'X-Github-Api-Version: 2022-11-28' \
+            /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} \ 
+            | jq.pullrequest[0].number" >> $GITHUB_ENV
       - name: discord success message
         uses: appleboy/discord-action@master
         with:
@@ -17,12 +23,18 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#42f545"
           username: "GitHub Bot"
-          message: "${{ github.repository }}: ${{ github.event.workflow_run.name }} ${{ github.event.workflow_run.id }} ${{ github.event.workflow_run.run_number }} was successful"
+          message: "${{ github.repository }}: ${{ github.event.workflow_run.name }} ${{ github.event.workflow_run.id }} ${{ github.event.workflow_run.run_number }} was successful PR: ${{ env.pull_request }}"
 
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure'  }}
     steps:
+      - name: get PR
+        run: |
+          echo "pull_request=gh api -H `Accept: application/vnd.github+json' \
+            -H 'X-Github-Api-Version: 2022-11-28' \
+            /repos/${{ github.repository}}/actions/runs/${{ github.event.workflow_run.id }} \ 
+            | jq.pullrequest[0].number" >> $GITHUB_ENV
       - name: discord fail message
         uses: appleboy/discord-action@master
         with:
@@ -30,5 +42,5 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#990000"
           username: "GitHub Bot"
-          message: "${{ github.repository }}: ${{ github.event.workflow_run.name }} ${{ github.event.workflow_run.id }} ${{ github.event.workflow_run.run_number }} failed"
+          message: "${{ github.repository }}: ${{ github.event.workflow_run.name }} ${{ github.event.workflow_run.id }} ${{ github.event.workflow_run.run_number }} failed, PR ${{ env.pull_request }}"
     
