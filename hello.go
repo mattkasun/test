@@ -13,6 +13,5 @@ func main() {
 		IsAdmin:  true,
 	}
 	fmt.Println("hello world!")
-	fmt.Println("good-bye")`
 	fmt.Println(user)
 }
