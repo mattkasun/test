@@ -13,6 +13,20 @@ on:
         type: string
 
 jobs:
+  verifybranches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: gravitl/netmaker
+          ref: ${{ inputs.tag }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: gravitl/netclient
+          ref: ${{ inputs.tag }}
+  
   x86:
     runs-on: ubuntu-latest
     steps:
