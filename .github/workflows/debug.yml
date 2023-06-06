@@ -28,6 +28,7 @@ jobs:
           ref: ${{ inputs.tag }}
   
   x86:
+    needs: [verifybranches]
     runs-on: ubuntu-latest
     steps:
       - 
