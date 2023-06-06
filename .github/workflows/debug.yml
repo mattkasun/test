@@ -1,6 +1,10 @@
 name: Debugging
 
 on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
   workflow_dispatch:
     inputs:
       tag:
@@ -13,6 +17,14 @@ on:
         type: string
 
 jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: set input
+        run: |
+          echo tag=master >> inputs.tag
+      
   verifybranches:
     runs-on: ubuntu-latest
     steps:
