@@ -18,6 +18,10 @@ jobs:
       - name: server name
         run: |
           cat ./server/server
+          echo "SERVER=$(cat ./server/server)" >> $GITHUB_ENV
+      - name: discord
+        run: |
+          echo ${{ env.SERVER }}
 
   on-failure:
     runs-on: ubuntu-latest
