@@ -2,7 +2,7 @@ name: Discord2
 
 on:
   workflow_run:
-    workflows: [Debug]
+    workflows: [Debugging]
     types:
       - completed
 jobs:
