@@ -1,0 +1,33 @@
+name: Discord2
+
+on:
+  workflow_run:
+    workflows: [Debugging]
+    types:
+      - completed
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success'  }}
+    steps:
+      - name: get logs
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          run_id: ${{ github.event.workflow_run.id }}
+          if_no_artifact_found: error
+      - name: server name
+        run: |
+          cat ./server/server
+          echo "SERVER=$(cat ./server/server)" >> $GITHUB_ENV
+      - name: discord
+        run: |
+          echo ${{ env.SERVER }}
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure'  }}
+    steps:
+      - name: fail
+        run: |
+          echo "failed" 
+    

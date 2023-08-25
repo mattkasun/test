@@ -13,6 +13,7 @@ func main() {
 		IsAdmin:  true,
 	}
 	fmt.Println("hello world!")
+
 	fmt.Println("another message")
 	fmt.Println("third message")
 	fmt.Println("fourth message")
