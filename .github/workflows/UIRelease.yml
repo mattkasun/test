@@ -35,7 +35,7 @@ jobs:
 
 
   pull-request:
-    needs: release-branch
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - name: create pr
