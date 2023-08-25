@@ -26,6 +26,8 @@ jobs:
           git config --global user.name "nusak"
           git config --global user.email "mkasun@nusak.ca"
       - name: Create Release Branch
+        env:
+        :  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git switch -c release-${{ inputs.version }}
           git tag -f ${{ inputs.version }}
