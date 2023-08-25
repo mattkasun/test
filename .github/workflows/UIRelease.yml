@@ -33,7 +33,7 @@ jobs:
           git tag -f ${{ inputs.version }}
           git push origin release-${{ inputs.version }}
           git push origin ${{ inputs.version }}
-          gh release create ${{ inputs.version }} --notes-file release.md --latest --target release-test --verify-tag
+          gh release create ${{ inputs.version }} --notes-file release.md --latest --target release-${{ inputs.version}} --verify-tag
 
 
   pull-request:
