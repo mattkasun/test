@@ -2,7 +2,6 @@ module github.com/mattkasun/test
 
 go 1.17
 
-
 require github.com/gravitl/netmaker v0.20.2
 
 
