@@ -26,16 +26,18 @@ jobs:
           git config --global user.name "nusak"
           git config --global user.email "mkasun@nusak.ca"
       - name: Create Release Branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git switch -c release-${{ inputs.version }}
           git tag -f ${{ inputs.version }}
           git push origin release-${{ inputs.version }}
           git push origin ${{ inputs.version }}
-          gh release create ${{ inputs.version }} --notes-file release.md --latest --target release-test --verify-tag
+          gh release create ${{ inputs.version }} --notes-file release.md --latest --target release-${{ inputs.version}} --verify-tag
 
 
   pull-request:
-    needs: release-branch
+    needs: release
     runs-on: ubuntu-latest
     steps:
       - name: create pr
