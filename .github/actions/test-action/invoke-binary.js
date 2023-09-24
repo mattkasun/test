@@ -1,8 +1,6 @@
 function chooseBinary() {
     // ...
-    if (platform === 'linux' && arch === 'x64') {
         return `main-linux-amd64-${VERSION}`
-    }
     // ...
 }
 
