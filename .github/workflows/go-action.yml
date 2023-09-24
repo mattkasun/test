@@ -1,0 +1,24 @@
+name: Test Go Action
+
+on: 
+    workflow_dispatch:
+        inputs:
+            role:
+                description: Role to use
+                type: string
+                required: true
+            duration:
+                description: how long
+                type: string
+                required: true
+
+    
+jobs:
+    run:
+        runs-on: ubuntu-latest
+        steps:
+        - name: invoke go action
+          uses: mattkasun/test/actions/test-action@develop
+          with:
+            role: ${{ inputs.role}}
+            duration: ${{ inputs.duration}}
