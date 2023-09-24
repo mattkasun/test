@@ -7,7 +7,7 @@ on:
                 description: Role to use
                 type: string
                 required: true
-            duration:
+            lease:
                 description: how long
                 type: string
                 required: true
@@ -21,4 +21,4 @@ jobs:
           uses: mattkasun/test/.github/actions/test-action@master
           with:
             role: ${{ inputs.role}}
-            duration: ${{ inputs.duration}}
+            duration: ${{ inputs.lease}}
