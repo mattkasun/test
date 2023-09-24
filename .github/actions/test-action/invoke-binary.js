@@ -1,6 +1,6 @@
 function chooseBinary() {
     // ...
-        return `main-linux-amd64-${VERSION}`
+        return `main-linux-amd64-v1.0.0`
     // ...
 }
 
