@@ -1,0 +1,12 @@
+name: test-action
+description: test action with go
+inputs:
+  lease:
+    description: lease
+    required: true
+  role:
+    description: role
+    required: true
+runs:
+  using: node20
+  main: invoke-binary.js
