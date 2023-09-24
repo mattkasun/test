@@ -18,7 +18,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: invoke go action
-          uses: mattkasun/test/actions/test-action@develop
+          uses: mattkasun/test/actions/test-action@master
           with:
             role: ${{ inputs.role}}
             duration: ${{ inputs.duration}}
