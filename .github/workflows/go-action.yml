@@ -16,4 +16,7 @@ jobs:
           with:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
             MASTERKEY: ${{ inputs.masterkey }}
+          env:
+            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+            MASTERKEY: ${{ inputs.masterkey }}
 
