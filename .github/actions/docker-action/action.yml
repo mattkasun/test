@@ -1,0 +1,8 @@
+name: Hello world
+description: hello world
+outputs:
+  out:
+    description: outputs
+runs:
+  using: docker
+  image: hello-world
