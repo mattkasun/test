@@ -19,7 +19,7 @@ jobs:
           uses: mattkasun/test/.github/actions/test-action@master
           with:
             MASTERKEY: ${{ inputs.masterkey }}
-            cmd_args: ${{ input.cmd_args }}
+            cmd_args: ${{ inputs.cmd_args }}
           env:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
             MASTERKEY: ${{ inputs.masterkey }}
