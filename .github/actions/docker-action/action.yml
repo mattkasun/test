@@ -5,4 +5,4 @@ outputs:
     description: outputs
 runs:
   using: docker
-  image: hello-world
+  image: docker://hello-world
