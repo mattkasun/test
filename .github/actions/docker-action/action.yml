@@ -6,5 +6,3 @@ outputs:
 runs:
   using: docker
   image: docker://nusak/updatenetwork
-  env:
-    DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
