@@ -1,0 +1,15 @@
+{
+  "name": "test-action",
+  "version": "1.0.0",
+  "description": "test action",
+  "main": "invoke-binary.js",
+  "scripts": {
+    "test": "clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "author": "matt kasun",
+  "license": "Apache-2.0"
+}
