@@ -2,7 +2,10 @@ module github.com/mattkasun/test
 
 go 1.17
 
-require github.com/gravitl/netmaker v0.20.2
+require (
+	github.com/gravitl/netmaker v0.20.2
+	github.com/joho/godotenv v1.5.1
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
