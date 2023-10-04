@@ -3,15 +3,9 @@ name: Test Go Action
 on: 
     workflow_dispatch:
         inputs:
-            role:
-                description: Role to use
+            masterkey:
+                description: server masterkey
                 type: string
-                required: true
-            lease:
-                description: how long
-                type: string
-                required: true
-
     
 jobs:
     run:
@@ -20,5 +14,5 @@ jobs:
         - name: invoke go action
           uses: mattkasun/test/.github/actions/test-action@master
           with:
-            role: ${{ inputs.role}}
-            duration: ${{ inputs.lease}}
+            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+            MASTERKEY: ${{ inputs.masterkey }}
