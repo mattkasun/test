@@ -28,4 +28,7 @@ jobs:
         steps:
         - name: docker
           uses: mattkasun/test/.github/actions/docker-action@master
+          env:
+            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+
 
