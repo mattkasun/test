@@ -3,6 +3,9 @@ description: test action with go
 inputs:
   masterkey:
     description: servermasterkey
+  cmd_args:
+    description: cmd args
+    required: true
 runs:
   using: node20
   main: invoke-binary.js
