@@ -27,5 +27,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: docker
-          uses: mattkasun/test/.github/action/docker-action@master
+          uses: mattkasun/test/.github/actions/docker-action@master
 
