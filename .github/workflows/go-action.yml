@@ -23,6 +23,9 @@ jobs:
           env:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
             MASTERKEY: ${{ inputs.masterkey }}
+    docker:
+        runs-on: ubuntu-latest
+        steps:
         - name: docker
-          uses: mattkasun/test/.github/action/docker-action
+          uses: mattkasun/test/.github/action/docker-action@master
 
