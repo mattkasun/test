@@ -6,6 +6,10 @@ on:
             masterkey:
                 description: server masterkey
                 type: string
+            cmd_args:
+                description: args for test command
+                type: string
+                required: true
     
 jobs:
     run:
@@ -15,6 +19,7 @@ jobs:
           uses: mattkasun/test/.github/actions/test-action@master
           with:
             MASTERKEY: ${{ inputs.masterkey }}
+            cmd_args: ${{ input.cmd_args }}
           env:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
             MASTERKEY: ${{ inputs.masterkey }}
