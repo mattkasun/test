@@ -14,7 +14,6 @@ jobs:
         - name: invoke go action
           uses: mattkasun/test/.github/actions/test-action@master
           with:
-            DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
             MASTERKEY: ${{ inputs.masterkey }}
           env:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
