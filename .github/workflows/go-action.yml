@@ -36,7 +36,7 @@ jobs:
         runs-on: ubuntu-latest
         name: composite
         steps:
-          - uses: actions/checkout@vv4
+          - uses: actions/checkout@v4
           - id: foo
             uses: mattkasun/test/.github/actions/composite@master
             with:
