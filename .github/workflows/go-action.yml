@@ -32,5 +32,15 @@ jobs:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
             MASTERKEY: ${{ inputs.masterkey }}
             KEY: ${{ secrets.TESTING_SSH_KEY }}
+    composite:
+        runs-on: ubuntu-latest
+        name: composite
+        steps:
+          - uses: actions/checkout@vv4
+          - id: foo
+            uses: mattkasun/test/.github/actions/composite@master
+            with:
+             role: ${{ inputs.role }}
+             duration: $(( inputs.duration ))
 
 
