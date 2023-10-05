@@ -3,7 +3,7 @@ function chooseBinary() {
         return `main-linux-amd64-v1.0.0`
     // ...
 }
-import { getInput, SetFailed } from '@actions/core';
+import core from '@actions/core';
 try {
 var  child_process   = require('node:child_process');
 const binary = chooseBinary();
@@ -12,6 +12,5 @@ const args = getInput('cmd-args');
 var spawnSyncReturns = child_process.spawnSync(mainScript, args, { stdio: 'inherit' });
 console.log('stdout:\n'+spawnSyncReturns.stdout);
 } catch (error) {
-    SetFailed(error.message);
-    
+    core.setFailed(error.message);
 }
