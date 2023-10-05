@@ -4,8 +4,8 @@ function chooseBinary() {
     // ...
 }
 import core from '@actions/core';
+import child_process from '@node/child_process'
 try {
-var  child_process   = require('node:child_process');
 const binary = chooseBinary();
 const mainScript = `${__dirname}/${binary}`;
 const args = getInput('cmd-args');
