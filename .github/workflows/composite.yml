@@ -1,0 +1,23 @@
+name: composite
+
+on: 
+  workflow_dispatch:
+    inputs:
+      role:
+        description: role
+        required: true
+      duration:
+        description: how long
+        required: true
+
+jobs:
+  composite:
+    runs-on: ubuntu-latest
+    name: composite
+    steps:
+      - uses: actions/checkout@vv4
+      - id: foo
+        uses: ./.github/actions/composite@master
+        with:
+         role: ${{ inputs.role }}
+         duration: $(( inputs.duration ))
