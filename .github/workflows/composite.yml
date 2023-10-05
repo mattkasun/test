@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@vv4
       - id: foo
-        uses: ./.github/actions/composite@master
+        uses: mattkasun/test/.github/actions/composite@master
         with:
          role: ${{ inputs.role }}
          duration: $(( inputs.duration ))
