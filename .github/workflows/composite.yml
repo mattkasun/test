@@ -1,14 +1,16 @@
 name: composite
 
 on: 
-  workflow_dispatch:
+  workflow_call:
     inputs:
       role:
         description: role
         required: true
+        type: string
       duration:
         description: how long
         required: true
+        type: string
 
 jobs:
   composite:
