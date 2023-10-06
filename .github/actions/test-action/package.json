@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "test action",
   "main": "invoke-binary.js",
-  "type": "module",
   "scripts": {
     "test": "clean"
   },
@@ -15,6 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@actions/github": "^5.1.1"
+    "@actions/github": "^5.1.1",
+    "json": "^11.0.0"
   }
 }
