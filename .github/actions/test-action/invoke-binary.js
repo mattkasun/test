@@ -11,6 +11,8 @@ const mainScript = `${__dirname}/${binary}`;
 console.log("bin", mainScript)
 const args = core.getInput('cmd-args');
 console.log("args", args)
+const masterkey = core.getInput('masterkey')
+console.log("masterkey", masterkey)
 var spawnSyncReturns = child_process.spawnSync(mainScript, [args], { stdio: 'inherit' });
 console.log('stdout:\n'+spawnSyncReturns.stdout);
 } catch (error) {
