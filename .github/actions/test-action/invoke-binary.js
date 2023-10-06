@@ -9,7 +9,7 @@ try {
 const binary = chooseBinary();
 const mainScript = `${__dirname}/${binary}`;
 console.log("bin", mainScript)
-const args = core.getInput('cmd-args');
+const args = core.getInput('cmd_args');
 console.log("args", args)
 const masterkey = core.getInput('masterkey')
 console.log("masterkey", masterkey)
