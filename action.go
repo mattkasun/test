@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
-	"strconv"
 
 	"github.com/kr/pretty"
 	"github.com/sethvargo/go-githubactions"
 )
 
 type Config struct {
-	Role     string
-	Duration int
+	Key    string
+	Api    string
+	Server string
 }
 
 func main() {
@@ -35,20 +35,17 @@ func NewFromInput(action *githubactions.Action) (*Config, error) {
 		return nil, fmt.Errorf("not running in GitHub Actions")
 	}
 	pretty.Println(context)
-	length := action.GetInput("duration")
-	d, err := strconv.Atoi(length)
-	if err != nil {
-		return nil, err
-	}
 	c := Config{
-		Role:     action.GetInput("role"),
-		Duration: d,
+		Key:    action.GetInput("key"),
+		Api:    action.GetInput("api"),
+		Server: action.GetInput("server"),
 	}
 	return &c, nil
 }
 
 func run(ctx context.Context, cfg *Config) error {
-	fmt.Printf("role: %s\n", cfg.Role)
-	fmt.Printf("duration: %d\n", cfg.Duration)
+	if _, err := pretty.Println(cfg); err != nil {
+		return err
+	}
 	return nil
 }

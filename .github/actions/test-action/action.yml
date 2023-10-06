@@ -3,6 +3,19 @@ description: test action with go
 inputs:
   masterkey:
     description: servermasterkey
+    default: secretkey
+  tag:
+    description: DO tag for testing
+    default: devops
+  api: 
+    description: api endopoint
+    default: "https://api.clustercat.com"
+  network: 
+    description: network for testing
+    default: devops
+  server:
+    description: server name
+    default: server
   cmd_args:
     description: cmd args
 runs:

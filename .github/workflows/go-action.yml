@@ -1,16 +1,32 @@
 name: Test Go Action
 
-on: 
+on:
     workflow_dispatch:
         inputs:
-            masterkey:
-                description: server masterkey
-                type: string
-            cmd_args:
-                description: args for test command
-                type: string
-                required: true
-    
+          tag:
+            required: true
+            description: DO tag to use for testing
+            default: "devops"
+          network: 
+            description: network to use for testing
+            required: true
+            default: "devops"
+          api:
+            description: api endopoint to use for testing
+            required: true
+            default: "https://api.clustercat.com"
+          masterkey:
+            description: master key of server
+            required: true
+            default: "secretkey"
+          server:
+            description: server hostname
+            required: true
+            default: "server"
+          cmd_args:
+            description: test to run
+            required: true
+
 jobs:
     run:
         runs-on: ubuntu-latest
@@ -22,7 +38,12 @@ jobs:
             cmd_args: ${{ inputs.cmd_args }}
           env:
             DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+            KEY: ${{ secrets.TESTING_SSH_KEY }}
             MASTERKEY: ${{ inputs.masterkey }}
+            TAG: ${{ inputs.tag }}
+            API: ${{ inputs.api }}
+            NETWORK: ${{ inputs.network }}
+            SERVER: ${{ inputs.server }}
     docker:
         runs-on: ubuntu-latest
         steps:
