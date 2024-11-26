@@ -22,7 +22,7 @@ jobs:
  #   - name: Build
  #     run: go build -v ./...
     - name: get files
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v6
       with:
         repo: gravitl/devops
         workflow: .github/workflows/test.yml
